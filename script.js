@@ -1,24 +1,24 @@
 // Complete the js code
-function Person(name, age) {
-    this.name = name;
-    this.age = age;
+function Car(make, model) {
+    this.make = make;
+    this.model = model;
 }
 
-Person.prototype.greet = function() {
-    console.log(Hello, my name is ${this.name} and I am ${this.age} years old.);
+Car.prototype.getMakeModel = function() {
+    return ${this.make} ${this.model};
 };
 
-
-class Employee extends Person {
-    constructor(name, age, jobTitle) {
-        super(name, age); 
-        this.jobTitle = jobTitle;
-    }
-
-    jobGreet() {
-        console.log(Hello, my name is ${this.name}, I am ${this.age} years old, and my job title is ${this.jobTitle}.);
-    }
+function SportsCar(make, model, topSpeed) {
+    Car.call(this, make, model);
+    this.topSpeed = topSpeed;
 }
 
-window.Person = Person;
-window.Employee = Employee;
+SportsCar.prototype = Object.create(Car.prototype);
+SportsCar.prototype.constructor = SportsCar;
+
+SportsCar.prototype.getTopSpeed = function() {
+    return this.topSpeed;
+};
+
+window.Car = Car;
+window.SportsCar = SportsCar;
